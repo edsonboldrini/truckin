@@ -9,14 +9,6 @@ part of 'sms_code_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SmsCodeController on _SmsCodeControllerBase, Store {
-  Computed<bool> _$isFormValidComputed;
-
-  @override
-  bool get isFormValid =>
-      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
-              name: '_SmsCodeControllerBase.isFormValid'))
-          .value;
-
   final _$isLoadingAtom = Atom(name: '_SmsCodeControllerBase.isLoading');
 
   @override
@@ -47,11 +39,11 @@ mixin _$SmsCodeController on _SmsCodeControllerBase, Store {
     });
   }
 
-  final _$signInAsyncAction = AsyncAction('_SmsCodeControllerBase.signIn');
+  final _$goToHomeAsyncAction = AsyncAction('_SmsCodeControllerBase.goToHome');
 
   @override
-  Future signIn() {
-    return _$signInAsyncAction.run(() => super.signIn());
+  Future goToHome() {
+    return _$goToHomeAsyncAction.run(() => super.goToHome());
   }
 
   final _$_SmsCodeControllerBaseActionController =
@@ -83,8 +75,7 @@ mixin _$SmsCodeController on _SmsCodeControllerBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-code: ${code},
-isFormValid: ${isFormValid}
+code: ${code}
     ''';
   }
 }

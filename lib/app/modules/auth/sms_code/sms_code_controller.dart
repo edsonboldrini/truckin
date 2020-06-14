@@ -1,3 +1,4 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 part 'sms_code_controller.g.dart';
@@ -13,15 +14,15 @@ abstract class _SmsCodeControllerBase with Store {
   @observable
   String code = '';
   @action
-  setCode(String value) => code = value;
-
-  @computed
-  bool get isFormValid => code.length == 4;
+  setCode(String value) {
+    code = value;
+    if (code.length == 4) {
+      goToHome();
+    }
+  }
 
   @action
-  signIn() async {
-    setIsLoading(true);
-    await Future.delayed(Duration(milliseconds: 500));
-    setIsLoading(false);
+  goToHome() async {
+    Modular.to.pushNamed('/main');
   }
 }
