@@ -9,30 +9,37 @@ part of 'sign_in_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SignInController on _SignInControllerBase, Store {
-  final _$valueAtom = Atom(name: '_SignInControllerBase.value');
+  final _$isLoadingAtom = Atom(name: '_SignInControllerBase.isLoading');
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
+  }
+
+  final _$signInAsyncAction = AsyncAction('_SignInControllerBase.signIn');
+
+  @override
+  Future signIn(String phoneNumber) {
+    return _$signInAsyncAction.run(() => super.signIn(phoneNumber));
   }
 
   final _$_SignInControllerBaseActionController =
       ActionController(name: '_SignInControllerBase');
 
   @override
-  void increment() {
+  dynamic setIsLoading(bool value) {
     final _$actionInfo = _$_SignInControllerBaseActionController.startAction(
-        name: '_SignInControllerBase.increment');
+        name: '_SignInControllerBase.setIsLoading');
     try {
-      return super.increment();
+      return super.setIsLoading(value);
     } finally {
       _$_SignInControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +48,7 @@ mixin _$SignInController on _SignInControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+isLoading: ${isLoading}
     ''';
   }
 }

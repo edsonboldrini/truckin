@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:truckin/app/modules/shared/utils/styles.dart';
+import 'package:truckin/app/modules/shared/utils/widgets.dart';
 import 'sign_in_controller.dart';
 
 class SignInPage extends StatefulWidget {
@@ -30,9 +33,6 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     Text('LOGO'),
-                    Container(
-                      height: 20,
-                    ),
                   ],
                 ),
               ),
@@ -53,17 +53,29 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                         hintText: '(XX) XXXXX-XXXX',
                         border: OutlineInputBorder(),
                       ),
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        MaskTextInputFormatter(
+                          mask: '(##) #####-####',
+                          filter: {"#": RegExp(r'[0-9]')},
+                        ),
+                      ],
                     ),
                     Container(
                       height: 12,
                     ),
-                    RaisedButton(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      child: Text(
-                        'Entrar',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      onPressed: () => print('sign_in'),
+                    Observer(builder: (_) {
+                      if (controller.isLoading) {
+                        return CustomLoading();
+                      } else {
+                        return CustomRaisedButton(
+                          text: 'Entrar',
+                          function: () => controller.signIn('(27) 998745225'),
+                        );
+                      }
+                    }),
+                    Container(
+                      height: 12,
                     ),
                     FlatButton(
                       onPressed: () => Modular.to.pushNamed('/auth/sign_up'),
@@ -82,14 +94,10 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    RaisedButton(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      onPressed: () => print('facebook'),
+                    CustomRaisedButton(
+                      text: 'Entrar com facebook',
                       color: CustomColors.blueFacebook,
-                      child: Text(
-                        'Entrar com Facebook',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      function: () => print('facebook'),
                     ),
                     Container(
                       height: 20,

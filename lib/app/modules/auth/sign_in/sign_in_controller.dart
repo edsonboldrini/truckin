@@ -6,10 +6,14 @@ class SignInController = _SignInControllerBase with _$SignInController;
 
 abstract class _SignInControllerBase with Store {
   @observable
-  int value = 0;
+  bool isLoading = false;
+  @action
+  setIsLoading(bool value) => isLoading = value;
 
   @action
-  void increment() {
-    value++;
+  signIn(String phoneNumber) async {
+    setIsLoading(true);
+    await Future.delayed(Duration(milliseconds: 500));
+    setIsLoading(false);
   }
 }
