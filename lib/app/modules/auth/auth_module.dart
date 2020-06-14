@@ -1,3 +1,4 @@
+import 'sms_code/sms_code_controller.dart';
 import 'package:truckin/app/modules/auth/sign_in/sign_in_page.dart';
 import 'package:truckin/app/modules/auth/sign_up/sign_up_page.dart';
 
@@ -9,6 +10,7 @@ import 'package:dio/dio.dart';
 class AuthModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => SmsCodeController()),
         Bind((i) => SignUpController()),
         Bind((i) => SignInController()),
       ];
