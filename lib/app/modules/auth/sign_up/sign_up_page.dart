@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:truckin/app/modules/shared/utils/styles.dart';
+import 'package:truckin/app/modules/shared/utils/widgets.dart';
 import 'sign_up_controller.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -25,22 +28,22 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.30,
+                height: MediaQuery.of(context).size.height * 0.50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Text('LOGO'),
-                    Container(
-                      height: 20,
+                    AspectRatio(
+                      aspectRatio: 100 / 50,
+                      child: Image.asset('assets/icons/icon.png'),
                     ),
                   ],
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.40,
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Qual e seu numero de telefone?',
@@ -49,6 +52,14 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                       height: 12,
                     ),
                     TextField(
+                      keyboardType: TextInputType.phone,
+                      onChanged: controller.setPhone,
+                      inputFormatters: [
+                        MaskTextInputFormatter(
+                          mask: '(##) #####-####',
+                          filter: {"#": RegExp(r'[0-9]')},
+                        ),
+                      ],
                       decoration: InputDecoration(
                         hintText: '(XX) XXXXX-XXXX',
                         border: OutlineInputBorder(),
@@ -57,13 +68,25 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                     Container(
                       height: 12,
                     ),
-                    RaisedButton(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      child: Text(
-                        'Entrar',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      onPressed: () => print('sign_in'),
+                    Observer(builder: (_) {
+                      if (controller.isLoading) {
+                        return CustomLoading();
+                      } else {
+                        if (controller.isFormValid)
+                          return CustomRaisedButton(
+                            text: 'Entrar',
+                            function: () => controller.signIn(),
+                          );
+                        else {
+                          return CustomRaisedButton(
+                            text: 'Entrar',
+                            function: null,
+                          );
+                        }
+                      }
+                    }),
+                    Container(
+                      height: 12,
                     ),
                     FlatButton(
                       onPressed: () => Modular.to.pushNamed('/auth/sign_up'),
@@ -78,18 +101,14 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.20,
+                height: MediaQuery.of(context).size.height * 0.10,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    RaisedButton(
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      onPressed: () => print('facebook'),
+                    CustomRaisedButton(
+                      text: 'Entrar com facebook',
                       color: CustomColors.blueFacebook,
-                      child: Text(
-                        'Entrar com Facebook',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      function: () => print('facebook'),
                     ),
                     Container(
                       height: 20,

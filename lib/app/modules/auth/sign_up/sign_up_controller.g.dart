@@ -9,30 +9,97 @@ part of 'sign_up_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SignUpController on _SignUpControllerBase, Store {
-  final _$valueAtom = Atom(name: '_SignUpControllerBase.value');
+  Computed<bool> _$isFormValidComputed;
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get isFormValid =>
+      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
+              name: '_SignUpControllerBase.isFormValid'))
+          .value;
+
+  final _$isLoadingAtom = Atom(name: '_SignUpControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
+  }
+
+  final _$phoneAtom = Atom(name: '_SignUpControllerBase.phone');
+
+  @override
+  String get phone {
+    _$phoneAtom.reportRead();
+    return super.phone;
+  }
+
+  @override
+  set phone(String value) {
+    _$phoneAtom.reportWrite(value, super.phone, () {
+      super.phone = value;
+    });
+  }
+
+  final _$nameAtom = Atom(name: '_SignUpControllerBase.name');
+
+  @override
+  String get name {
+    _$nameAtom.reportRead();
+    return super.name;
+  }
+
+  @override
+  set name(String value) {
+    _$nameAtom.reportWrite(value, super.name, () {
+      super.name = value;
+    });
+  }
+
+  final _$signInAsyncAction = AsyncAction('_SignUpControllerBase.signIn');
+
+  @override
+  Future signIn() {
+    return _$signInAsyncAction.run(() => super.signIn());
   }
 
   final _$_SignUpControllerBaseActionController =
       ActionController(name: '_SignUpControllerBase');
 
   @override
-  void increment() {
+  dynamic setIsLoading(bool value) {
     final _$actionInfo = _$_SignUpControllerBaseActionController.startAction(
-        name: '_SignUpControllerBase.increment');
+        name: '_SignUpControllerBase.setIsLoading');
     try {
-      return super.increment();
+      return super.setIsLoading(value);
+    } finally {
+      _$_SignUpControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setPhone(String value) {
+    final _$actionInfo = _$_SignUpControllerBaseActionController.startAction(
+        name: '_SignUpControllerBase.setPhone');
+    try {
+      return super.setPhone(value);
+    } finally {
+      _$_SignUpControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setName(String value) {
+    final _$actionInfo = _$_SignUpControllerBaseActionController.startAction(
+        name: '_SignUpControllerBase.setName');
+    try {
+      return super.setName(value);
     } finally {
       _$_SignUpControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +108,10 @@ mixin _$SignUpController on _SignUpControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+isLoading: ${isLoading},
+phone: ${phone},
+name: ${name},
+isFormValid: ${isFormValid}
     ''';
   }
 }

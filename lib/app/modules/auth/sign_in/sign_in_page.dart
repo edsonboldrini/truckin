@@ -28,19 +28,22 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.30,
+                height: MediaQuery.of(context).size.height * 0.50,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Text('LOGO'),
+                    AspectRatio(
+                      aspectRatio: 100 / 50,
+                      child: Image.asset('assets/icons/icon.png'),
+                    ),
                   ],
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.50,
+                height: MediaQuery.of(context).size.height * 0.40,
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     Text(
                       'Qual e seu numero de telefone?',
@@ -98,7 +101,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.20,
+                height: MediaQuery.of(context).size.height * 0.10,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[

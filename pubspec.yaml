@@ -43,7 +43,7 @@ dev_dependencies:
 
 flutter_icons:
   android: true
-  image_path: "assets/icons/icon.png"
+  image_path: "assets/icons/launcher.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -68,13 +68,10 @@ flutter:
         - asset: assets/fonts/OpenSans-LightItalic.ttf
         - asset: assets/fonts/OpenSans-Regular.ttf
         - asset: assets/fonts/OpenSans-SemiBold.ttf        
-        - asset: assets/fonts/OpenSans-SemiBoldItalic.ttf        
+        - asset: assets/fonts/OpenSans-SemiBoldItalic.ttf
 
-scripts: 
-
-    mobx_watch: flutter clean & flutter pub get & flutter pub run build_runner watch --delete-conflicting-outputs
-
-    mobx_build: flutter clean & flutter pub get & flutter pub run build_runner build --delete-conflicting-outputs
+  assets:
+    - assets/icons/icon.png    
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -106,3 +103,10 @@ scripts:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+      
+
+scripts: 
+
+    mobx_watch: flutter clean & flutter pub get & flutter pub run build_runner watch --delete-conflicting-outputs
+
+    mobx_build: flutter clean & flutter pub get & flutter pub run build_runner build --delete-conflicting-outputs
