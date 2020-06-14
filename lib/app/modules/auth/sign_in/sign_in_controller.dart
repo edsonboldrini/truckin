@@ -10,8 +10,16 @@ abstract class _SignInControllerBase with Store {
   @action
   setIsLoading(bool value) => isLoading = value;
 
+  @observable
+  String phone = '';
   @action
-  signIn(String phoneNumber) async {
+  setPhone(String value) => phone = value;
+
+  @computed
+  bool get isFormValid => phone.length == 15;
+
+  @action
+  signIn() async {
     setIsLoading(true);
     await Future.delayed(Duration(milliseconds: 500));
     setIsLoading(false);

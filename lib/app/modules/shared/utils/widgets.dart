@@ -7,7 +7,8 @@ class CustomRaisedButton extends StatelessWidget {
   final Color color;
   final Function() function;
 
-  const CustomRaisedButton({Key key, this.text, this.color, this.function})
+  const CustomRaisedButton(
+      {Key key, this.text, this.color, this.function})
       : super(key: key);
 
   @override
@@ -16,6 +17,7 @@ class CustomRaisedButton extends StatelessWidget {
       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
       onPressed: function,
       color: color,
+      disabledColor: CustomColors.disabledSecondary,      
       child: Text(
         text,
         style: TextStyle(fontSize: 16),

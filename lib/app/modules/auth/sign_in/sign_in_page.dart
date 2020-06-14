@@ -49,17 +49,18 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                       height: 12,
                     ),
                     TextField(
-                      decoration: InputDecoration(
-                        hintText: '(XX) XXXXX-XXXX',
-                        border: OutlineInputBorder(),
-                      ),
                       keyboardType: TextInputType.phone,
+                      onChanged: controller.setPhone,
                       inputFormatters: [
                         MaskTextInputFormatter(
                           mask: '(##) #####-####',
                           filter: {"#": RegExp(r'[0-9]')},
                         ),
                       ],
+                      decoration: InputDecoration(
+                        hintText: '(XX) XXXXX-XXXX',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                     Container(
                       height: 12,
@@ -68,10 +69,17 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                       if (controller.isLoading) {
                         return CustomLoading();
                       } else {
-                        return CustomRaisedButton(
-                          text: 'Entrar',
-                          function: () => controller.signIn('(27) 998745225'),
-                        );
+                        if (controller.isFormValid)
+                          return CustomRaisedButton(
+                            text: 'Entrar',
+                            function: () => controller.signIn(),
+                          );
+                        else {
+                          return CustomRaisedButton(
+                            text: 'Entrar',
+                            function: null,
+                          );
+                        }
                       }
                     }),
                     Container(
