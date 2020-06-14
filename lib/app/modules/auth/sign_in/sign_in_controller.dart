@@ -1,3 +1,4 @@
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mobx/mobx.dart';
 
 part 'sign_in_controller.g.dart';
@@ -23,5 +24,6 @@ abstract class _SignInControllerBase with Store {
     setIsLoading(true);
     await Future.delayed(Duration(milliseconds: 500));
     setIsLoading(false);
+    Modular.to.pushNamed('/auth/sms_code');
   }
 }

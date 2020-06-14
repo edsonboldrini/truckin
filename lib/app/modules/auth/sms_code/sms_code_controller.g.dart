@@ -9,30 +9,71 @@ part of 'sms_code_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$SmsCodeController on _SmsCodeControllerBase, Store {
-  final _$valueAtom = Atom(name: '_SmsCodeControllerBase.value');
+  Computed<bool> _$isFormValidComputed;
 
   @override
-  int get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  bool get isFormValid =>
+      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
+              name: '_SmsCodeControllerBase.isFormValid'))
+          .value;
+
+  final _$isLoadingAtom = Atom(name: '_SmsCodeControllerBase.isLoading');
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
     });
+  }
+
+  final _$codeAtom = Atom(name: '_SmsCodeControllerBase.code');
+
+  @override
+  String get code {
+    _$codeAtom.reportRead();
+    return super.code;
+  }
+
+  @override
+  set code(String value) {
+    _$codeAtom.reportWrite(value, super.code, () {
+      super.code = value;
+    });
+  }
+
+  final _$signInAsyncAction = AsyncAction('_SmsCodeControllerBase.signIn');
+
+  @override
+  Future signIn() {
+    return _$signInAsyncAction.run(() => super.signIn());
   }
 
   final _$_SmsCodeControllerBaseActionController =
       ActionController(name: '_SmsCodeControllerBase');
 
   @override
-  void increment() {
+  dynamic setIsLoading(bool value) {
     final _$actionInfo = _$_SmsCodeControllerBaseActionController.startAction(
-        name: '_SmsCodeControllerBase.increment');
+        name: '_SmsCodeControllerBase.setIsLoading');
     try {
-      return super.increment();
+      return super.setIsLoading(value);
+    } finally {
+      _$_SmsCodeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setCode(String value) {
+    final _$actionInfo = _$_SmsCodeControllerBaseActionController.startAction(
+        name: '_SmsCodeControllerBase.setCode');
+    try {
+      return super.setCode(value);
     } finally {
       _$_SmsCodeControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +82,9 @@ mixin _$SmsCodeController on _SmsCodeControllerBase, Store {
   @override
   String toString() {
     return '''
-value: ${value}
+isLoading: ${isLoading},
+code: ${code},
+isFormValid: ${isFormValid}
     ''';
   }
 }
