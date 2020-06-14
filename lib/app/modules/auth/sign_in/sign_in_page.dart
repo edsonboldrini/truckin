@@ -106,7 +106,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     CustomRaisedButton(
-                      text: 'Entrar com facebook',
+                      text: 'Entrar com Facebook',
                       color: CustomColors.blueFacebook,
                       function: () => print('facebook'),
                     ),

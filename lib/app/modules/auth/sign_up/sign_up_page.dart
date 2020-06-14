@@ -45,8 +45,14 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Text(
-                      'Qual e seu numero de telefone?',
+                    TextField(
+                      keyboardType: TextInputType.text,
+                      onChanged: controller.setName,
+                      textCapitalization: TextCapitalization.words,
+                      decoration: InputDecoration(
+                        labelText: 'Nome',
+                        border: OutlineInputBorder(),
+                      ),
                     ),
                     Container(
                       height: 12,
@@ -61,7 +67,7 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                         ),
                       ],
                       decoration: InputDecoration(
-                        hintText: '(XX) XXXXX-XXXX',
+                        labelText: 'Telefone',
                         border: OutlineInputBorder(),
                       ),
                     ),
@@ -74,45 +80,17 @@ class _SignUpPageState extends ModularState<SignUpPage, SignUpController> {
                       } else {
                         if (controller.isFormValid)
                           return CustomRaisedButton(
-                            text: 'Entrar',
-                            function: () => controller.signIn(),
+                            text: 'Criar conta',
+                            function: () => controller.signUp(),
                           );
                         else {
                           return CustomRaisedButton(
-                            text: 'Entrar',
+                            text: 'Criar conta',
                             function: null,
                           );
                         }
                       }
                     }),
-                    Container(
-                      height: 12,
-                    ),
-                    FlatButton(
-                      onPressed: () => Modular.to.pushNamed('/auth/sign_up'),
-                      child: Text(
-                        'Nao possui conta, increva-se ja',
-                        style: TextStyle(
-                          color: CustomColors.blueFacebook,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              Container(
-                height: MediaQuery.of(context).size.height * 0.10,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    CustomRaisedButton(
-                      text: 'Entrar com facebook',
-                      color: CustomColors.blueFacebook,
-                      function: () => print('facebook'),
-                    ),
-                    Container(
-                      height: 20,
-                    ),
                   ],
                 ),
               ),

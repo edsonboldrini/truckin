@@ -62,11 +62,11 @@ mixin _$SignUpController on _SignUpControllerBase, Store {
     });
   }
 
-  final _$signInAsyncAction = AsyncAction('_SignUpControllerBase.signIn');
+  final _$signUpAsyncAction = AsyncAction('_SignUpControllerBase.signUp');
 
   @override
-  Future signIn() {
-    return _$signInAsyncAction.run(() => super.signIn());
+  Future signUp() {
+    return _$signUpAsyncAction.run(() => super.signUp());
   }
 
   final _$_SignUpControllerBaseActionController =

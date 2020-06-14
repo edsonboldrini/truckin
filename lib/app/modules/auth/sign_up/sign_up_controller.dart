@@ -24,7 +24,7 @@ abstract class _SignUpControllerBase with Store {
   bool get isFormValid => phone.length == 15;
 
   @action
-  signIn() async {
+  signUp() async {
     setIsLoading(true);
     await Future.delayed(Duration(milliseconds: 500));
     setIsLoading(false);
