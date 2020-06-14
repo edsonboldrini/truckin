@@ -21,11 +21,11 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: 8),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Container(
-                height: MediaQuery.of(context).size.height * 0.33,
+                height: MediaQuery.of(context).size.height * 0.30,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
@@ -37,7 +37,7 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.33,
+                height: MediaQuery.of(context).size.height * 0.50,
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -64,12 +64,21 @@ class _SignInPageState extends ModularState<SignInPage, SignInController> {
                         style: TextStyle(fontSize: 16),
                       ),
                       onPressed: () => print('sign_in'),
+                    ),
+                    FlatButton(
+                      onPressed: () => Modular.to.pushNamed('/auth/sign_up'),
+                      child: Text(
+                        'Nao possui conta, increva-se ja',
+                        style: TextStyle(
+                          color: CustomColors.blueFacebook,
+                        ),
+                      ),
                     )
                   ],
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height * 0.33,
+                height: MediaQuery.of(context).size.height * 0.20,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[

@@ -10,6 +10,7 @@ class AppWidget extends StatelessWidget {
       title: 'Truckin',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
         primaryColor: CustomColors.orangePrimary,
         fontFamily: 'OpenSans',
         buttonTheme: ButtonThemeData(
